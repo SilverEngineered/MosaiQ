@@ -174,6 +174,7 @@ class QuantumGenerator(nn.Module):
                 f = quantum_circuit(elem, params)
                 if args.env == 'Real':
                     f = quantum_cirtui_real_machine(elem, params)
+                f = torch.tensor(f)
                 q_out = f.float().unsqueeze(0)
                 patches = torch.cat((patches, q_out))
             flattened_order =  [j for sub in ordering for j in sub]
