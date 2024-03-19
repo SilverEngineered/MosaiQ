@@ -1,6 +1,7 @@
 # Library imports
 # Note: Much of the code is based on the structure of PatchGan implemented in this pennylane tutorial https://pennylane.ai/qml/demos/tutorial_quantum_gans.html
 import math
+import os
 import random
 import numpy as np
 import pandas as pd
@@ -265,7 +266,7 @@ if args.mode == 'train':
                         else:
                             new_im[i][j] = 1.0
                 im = Image.fromarray(np.uint8(255-(new_im*255)))
-                im = im.save(f"gen_images_dist\\{label_to_keep_name}_{counter}.png")
+                im = im.save(os.path.join("gen_images_dist",f"{label_to_keep_name}_{counter}.png"))
                 torch.save(generator.state_dict(), f"generator_{label_to_keep_name}")
                 torch.save(discriminator.state_dict(), f"disc_{label_to_keep_name}")
 
